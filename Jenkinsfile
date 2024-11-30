@@ -15,6 +15,9 @@ pipeline {
         }
 
         stage('Build Backend Image') {
+            when {
+                changeset "backend/**"  // Trigger this stage only if backend files change
+            }
             steps {
                 dir('backend') {
                     sh 'docker build -t backend:latest .'
@@ -23,6 +26,9 @@ pipeline {
         }
 
         stage('Build Frontend Image') {
+            when {
+                changeset "frontend/**"  // Trigger this stage only if frontend files change
+            }
             steps {
                 dir('frontend') {
                     sh 'docker build -t frontend:latest .'
