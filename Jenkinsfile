@@ -33,7 +33,7 @@ pipeline {
         stage('Deploy with Docker Compose') {
             steps {
                 sh 'docker compose down'  // Stops and removes existing containers
-                sh 'docker compose up --build'  // Builds and starts containers in detached mode
+                sh 'docker compose up --build -d'  // Builds and starts containers in detached mode
             }
         }
     }
